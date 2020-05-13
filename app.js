@@ -43,6 +43,7 @@ app.use(express.static(join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use('/', indexRouter);
 
 app.use('/place', placeRouter);
