@@ -1,0 +1,13 @@
+<h1>Edit Places</h1>
+
+{{#each place}}
+   <form action="/places/{{_id}}" method="POST">
+
+  <label for="">Place Name</label>
+  <input type="text" name="name" id="name">
+
+
+ <button>Edit Place</button>
+ 
+ </form>
+{{/each}}

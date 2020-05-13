@@ -1,0 +1,6 @@
+<h1>Delete Places</h1>
+
+{{#each place}}
+  <a href="/place/{{_id}}">{{name}}</a>
+  <form action="/place/{{id}}/delete" method="POST"><button>Delete</button></form>
+{{/each}}
