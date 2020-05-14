@@ -8,14 +8,25 @@ const placeSchema = new mongoose.Schema(
         type: String,
         defualt: 'Point'
       }
-    },
+    },    
     type: {
       type: String,
       enum: ['coffee_shop', 'bookstore']
-    }
+    },
+    coordinates: [
+      {
+        //create constrains both for long and latt
+        type: Number,
+        min: -180,
+        max: 180
+      }
+    ]
   },
   {
-    timestamps: true
+    timestamps: {
+      type: String,
+      default: new Date()
+    }
   }
 );
 

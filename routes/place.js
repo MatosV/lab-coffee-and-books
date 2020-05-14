@@ -16,8 +16,25 @@ placeRouter.get('/display', (req, res, next) => {
     });
 });
 
+//CREATE A PLACE
 placeRouter.get('/create', (req, res, next) => {
   res.render('place/create');
+});
+
+placeRouter.post('/create', (req, res, next) => {
+  Place.create({
+    name: req.body.name,
+    location: req.body.location,
+    type: req.body.type
+  })
+    .then((newPlace) => {
+      res.redirect('/place/display');
+      console.log(`You created => ${newPlace}`);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render('place/create', err);
+    });
 });
 
 //SHOW A PLACE
@@ -26,16 +43,11 @@ placeRouter.get('/:placeId', (req, res, next) => {
 
   Place.findById(placeId)
     .then((place) => {
-      res.render('place/display', {place});
+      res.render('place/display', { place });
     })
     .catch((err) => {
       next(err);
     });
-});
-
-//CREATE A PLACE
-placeRouter.post('/create', (req, res, next) => {
-  console.log(req.body);
 });
 
 //DELETE PLACES
@@ -66,21 +78,22 @@ placeRouter.get('/place/:id/update', (req, res, next) => {
     });
 });
 
-  //PARAMS TO EDIT
-  placeRouter.post('/place/:id', (req, res, next) => {
-    const placesID = req.params.id;
+//PARAMS TO EDIT
+placeRouter.post('/place/:id', (req, res, next) => {
+  const placesId = req.params.id;
 
-    Place.update(placesID, {
-      name: req.body.name
-      //missing - type
-      //missing - timestamp
+  Place.update(placesId, {
+    name: req.body.name,
+    location: req.body.location
+    //missing - type
+    //missing - timestamp
+  })
+    .then((places) => {
+      res.render('/place', { places });
     })
-      .then((places) => {
-        res.render('/place', { places });
-      })
-      .catch((err) => {
-        next(err);
-      });
-  });
+    .catch((err) => {
+      next(err);
+    });
+});
 
 module.exports = placeRouter;

@@ -1,9 +1,16 @@
 <form action="/place/create "method="POST" >
-  <label for="name-input">Place Name</label>
-  <input id="name-input" type="text name="name" placeholder="Place Name"">
+
+  <label for="name">Place Name</label>
+  <input id="name" type="text" name="name" placeholder="Place Name">
   
-  <label for="locatio">Place Location</label>
-  <input type="text name="name" placeholder="Place Location"">
+  <label for="location"> Place Location</label>
+  <input id="location "type="text" name="location" placeholder="Place Location">
+  
+  <label for="type"> Place Type</label>
+  <label for="coffee_shop">Coffee Shop</label>
+  <input id="type" type="radio" name="type" placeholder="Place Type" value="coffee_shop">
+  <label for="bookstore">Bookstore</label>
+  <input id="type" type="radio" name="type" placeholder="Place Type" value="bookstore">
 
   <button>Create Place</button>
 </form>
